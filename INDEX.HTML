@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eres mi universo — Para Mario Daquilema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#05050f;
+    --bg-deep:#0a0e27;
+    --purple:#9b7fd4;
+    --purple-dim:#5b4499;
+    --gold:#f4c563;
+    --gold-bright:#ffb86b;
+    --rose:#ee7b91;
+    --blue:#6fb8e0;
+    --copper:#d98a4f;
+    --text:#f4f1fb;
+    --text-muted:#a39fc4;
+    --display:'Fraunces', serif;
+    --body:'Work Sans', sans-serif;
+    --mono:'Space Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg-void);
+    color:var(--text);
+    font-family:var(--body);
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  #stars{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:-2;
+    background:radial-gradient(ellipse at 50% -10%, var(--bg-deep), var(--bg-void) 60%);
+  }
+
+  .nebula{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:.25;
+    z-index:-1;
+    pointer-events:none;
+  }
+  .nebula-1{width:42vw;height:42vw;top:-10%;left:-10%;background:var(--purple);animation:drift 26s ease-in-out infinite;}
+  .nebula-2{width:36vw;height:36vw;bottom:-15%;right:-8%;background:var(--rose);animation:drift 32s ease-in-out infinite reverse;}
+  @keyframes drift{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(4vw,3vw) scale(1.12);}
+  }
+
+  section, header, footer{
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:8vh 1.5rem 6vh;
+  }
+  .hero-inner{max-width:760px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:.7rem;
+    letter-spacing:.28em;
+    color:var(--gold);
+    margin:0 0 1.6rem;
+    text-transform:uppercase;
+  }
+  .hero-title{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.8rem,9vw,6.2rem);
+    line-height:1.02;
+    margin:0 0 1.4rem;
+    letter-spacing:-.01em;
+  }
+  .hero-title .accent{
+    font-style:italic;
+    font-weight:400;
+    background:linear-gradient(100deg, var(--gold) 0%, var(--rose) 55%, var(--purple) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero-sub{
+    font-size:clamp(1rem,2vw,1.2rem);
+    color:var(--text-muted);
+    max-width:46ch;
+    margin:0 auto 3rem;
+    line-height:1.6;
+  }
+  .hero-name{
+    display:inline-flex;
+    flex-direction:column;
+    gap:.5rem;
+    padding:1.4rem 2.4rem;
+    border:1px solid rgba(244,197,99,.25);
+    border-radius:2px;
+    background:rgba(244,197,99,.04);
+  }
+  .hero-name-label{
+    font-family:var(--mono);
+    font-size:.65rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+  }
+  .hero-name-value{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(1.3rem,3.4vw,1.9rem);
+    letter-spacing:.04em;
+    color:var(--gold);
+  }
+  .scroll-cue{
+    margin-top:4rem;
+    font-family:var(--mono);
+    font-size:.7rem;
+    letter-spacing:.2em;
+    color:var(--text-muted);
+    opacity:.7;
+    animation:bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(6px);}
+  }
+
+  /* ---------- SECTION HEADINGS ---------- */
+  .section-head{
+    text-align:center;
+    max-width:620px;
+    margin:0 auto 3.5rem;
+    padding:0 1.5rem;
+  }
+  .section-eyebrow{
+    font-family:var(--mono);
+    font-size:.68rem;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:var(--blue);
+    margin:0 0 .9rem;
+  }
+  .section-title{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.8rem,4vw,2.6rem);
+    margin:0 0 .9rem;
+  }
+  .section-sub{
+    color:var(--text-muted);
+    font-size:1rem;
+    line-height:1.6;
+    margin:0;
+  }
+
+  /* ---------- SOLAR SYSTEM ---------- */
+  .solar-section{padding:9vh 1.5rem 8vh;}
+  .solar-system{
+    position:relative;
+    width:clamp(460px,90vmin,760px);
+    height:clamp(460px,90vmin,760px);
+    margin:0 auto;
+  }
+  .sun{
+    position:absolute;
+    top:50%;left:50%;
+    width:clamp(70px,12vmin,112px);
+    height:clamp(70px,12vmin,112px);
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 32%, #fff3d6, var(--gold) 45%, var(--gold-bright) 80%);
+    box-shadow:0 0 60px 14px rgba(244,197,99,.45), 0 0 120px 40px rgba(244,197,99,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation:pulse 4.5s ease-in-out infinite;
+    z-index:5;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 60px 14px rgba(244,197,99,.45), 0 0 120px 40px rgba(244,197,99,.15);}
+    50%{box-shadow:0 0 75px 20px rgba(244,197,99,.6), 0 0 150px 55px rgba(244,197,99,.22);}
+  }
+  .sun span{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:clamp(.6rem,1.4vmin,.78rem);
+    letter-spacing:.1em;
+    color:#3a2400;
+  }
+
+  .orbit-ring{
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    border:1px dashed rgba(244,241,251,.14);
+    border-radius:50%;
+  }
+  .r1{width:clamp(150px,28vmin,230px);height:clamp(150px,28vmin,230px);}
+  .r2{width:clamp(212px,40vmin,330px);height:clamp(212px,40vmin,330px);}
+  .r3{width:clamp(274px,52vmin,430px);height:clamp(274px,52vmin,430px);}
+  .r4{width:clamp(336px,64vmin,530px);height:clamp(336px,64vmin,530px);}
+  .r5{width:clamp(398px,76vmin,630px);height:clamp(398px,76vmin,630px);}
+  .r6{width:clamp(460px,88vmin,730px);height:clamp(460px,88vmin,730px);}
+
+  .orbit-spin{
+    position:absolute;
+    inset:0;
+    animation:spin linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg);} }
+
+  .planet-pivot{
+    position:absolute;
+    top:50%;left:100%;
+    transform:translate(-50%,-50%);
+  }
+
+  .planet-counter{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.4rem;
+    animation:spin-rev linear infinite;
+    cursor:pointer;
+    background:none;
+    border:none;
+    padding:.4rem;
+    font-family:inherit;
+  }
+  @keyframes spin-rev{ to{ transform:rotate(-360deg);} }
+
+  .planet{
+    width:clamp(15px,2.6vmin,23px);
+    height:clamp(15px,2.6vmin,23px);
+    border-radius:50%;
+    box-shadow:0 0 14px 3px currentColor;
+    transition:transform .25s ease;
+  }
+  .planet-pivot:hover .planet,
+  .planet-pivot:focus-within .planet{transform:scale(1.35);}
+  .planet-pivot:hover .orbit-spin-parent,
+  .planet-pivot:focus-within{outline:none;}
+
+  .planet-label{
+    font-family:var(--mono);
+    font-size:clamp(.55rem,1.05vmin,.68rem);
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    white-space:nowrap;
+    color:var(--text-muted);
+    transition:color .2s ease;
+  }
+  .planet-counter:hover .planet-label,
+  .planet-counter:focus-visible .planet-label{color:var(--text);}
+  .planet-counter:focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:6px;}
+
+  .info-panel{
+    max-width:520px;
+    margin:4rem auto 0;
+    text-align:center;
+    padding:1.6rem 1.8rem;
+    border-top:1px solid rgba(244,241,251,.1);
+    min-height:90px;
+  }
+  .info-eyebrow{
+    font-family:var(--mono);
+    font-size:.66rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    margin:0 0 .7rem;
+    transition:color .25s ease;
+  }
+  .info-text{
+    font-family:var(--display);
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(1.05rem,2.4vw,1.3rem);
+    line-height:1.55;
+    margin:0;
+    color:var(--text);
+  }
+
+  /* ---------- LETTER ---------- */
+  .letter-section{padding:6vh 1.5rem 12vh;}
+  .letter-card{
+    max-width:640px;
+    margin:0 auto;
+    padding:clamp(2rem,5vw,3.4rem);
+    background:rgba(244,241,251,.035);
+    border:1px solid rgba(244,241,251,.1);
+    border-radius:4px;
+    backdrop-filter:blur(6px);
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .9s ease, transform .9s ease;
+  }
+  .letter-card.visible{opacity:1;transform:translateY(0);}
+  .letter-card p{
+    font-size:1.02rem;
+    line-height:1.85;
+    color:#ddd8ef;
+    margin:0 0 1.3rem;
+  }
+  .letter-card p:first-of-type::first-letter{
+    font-family:var(--display);
+    font-style:italic;
+    font-weight:500;
+    font-size:3.6rem;
+    line-height:.6;
+    float:left;
+    margin:.2rem .45rem 0 0;
+    color:var(--gold);
+  }
+  .signature{
+    margin-top:2.2rem;
+    text-align:right;
+  }
+  .signature .name{
+    font-family:var(--display);
+    font-style:italic;
+    font-size:1.3rem;
+    color:var(--gold);
+    display:block;
+  }
+  .signature .place{
+    font-family:var(--mono);
+    font-size:.7rem;
+    letter-spacing:.1em;
+    color:var(--text-muted);
+    display:block;
+    margin-top:.3rem;
+  }
+
+  /* ---------- NAME DIVIDER ---------- */
+  .name-divider{
+    text-align:center;
+    padding:7vh 1.5rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:1.1rem;
+  }
+  .divider-line{
+    width:1px;
+    height:54px;
+    background:linear-gradient(to bottom, transparent, var(--gold), transparent);
+    opacity:.6;
+  }
+  .divider-label{
+    font-family:var(--mono);
+    font-size:.66rem;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    margin:0;
+  }
+  .divider-name{
+    font-family:var(--display);
+    font-weight:600;
+    font-style:italic;
+    font-size:clamp(2.1rem,7vw,4rem);
+    letter-spacing:.03em;
+    margin:0;
+    background:linear-gradient(100deg, var(--gold) 0%, var(--rose) 50%, var(--purple) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 40px rgba(244,197,99,.25);
+  }
+
+  /* ---------- PRIDE SECTION ---------- */
+  .pride-section{padding:5vh 1.5rem 7vh;}
+  .star-grid{
+    max-width:980px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+    gap:1rem;
+  }
+  .star-card{
+    padding:1.4rem 1.3rem;
+    border:1px solid rgba(244,241,251,.1);
+    border-radius:4px;
+    background:rgba(244,241,251,.03);
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .7s ease, transform .7s ease, border-color .3s ease, background .3s ease;
+  }
+  .star-card.visible{opacity:1;transform:translateY(0);}
+  .star-card:hover{border-color:rgba(244,197,99,.35); background:rgba(244,197,99,.05);}
+  .star-card .glyph{
+    display:block;
+    color:var(--gold);
+    font-size:.9rem;
+    margin-bottom:.6rem;
+    letter-spacing:.1em;
+  }
+  .star-card p{
+    margin:0;
+    font-size:.94rem;
+    line-height:1.55;
+    color:#ddd8ef;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    text-align:center;
+    padding:3rem 1.5rem 3.5rem;
+    font-family:var(--mono);
+    font-size:.7rem;
+    letter-spacing:.08em;
+    color:var(--text-muted);
+  }
+  footer .mark{color:var(--gold);margin-bottom:.5rem;display:block;}
+
+  @media (max-width:640px){
+    .solar-system{width:92vw;height:92vw;}
+    .hero-name{padding:1.1rem 1.6rem;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<div class="nebula nebula-1"></div>
+<div class="nebula nebula-2"></div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">✦ Día del padre · 21 de junio</p>
+    <h1 class="hero-title">Eres mi<br><span class="accent">universo</span></h1>
+    <p class="hero-sub">Y entre todas las estrellas que conozco, tú sigues siendo, por mucho, la más brillante.</p>
+    <div class="hero-name">
+      <span class="hero-name-label">la estrella se llama</span>
+      <span class="hero-name-value">MARIO DAQUILEMA</span>
+    </div>
+    <div class="scroll-cue">desliza ↓</div>
+  </div>
+</header>
+
+<main>
+  <section class="solar-section">
+    <div class="section-head">
+      <p class="section-eyebrow">✦ Mi sistema solar</p>
+      <h2 class="section-title">Tiene un solo sol</h2>
+      <p class="section-sub">Cada cosa buena que orbita mi vida aprendió a girar gracias a ti. Toca cada planeta.</p>
+    </div>
+
+    <div class="solar-system">
+      <div class="sun"><span>MARIO</span></div>
+
+      <div class="orbit-ring r1">
+        <div class="orbit-spin" style="animation-duration:14s;">
+          <div class="planet-pivot">
+            <button class="planet-counter" style="animation-duration:14s; color:var(--gold);" data-name="Fortaleza" data-msg="Aprendí que ninguna tormenta dura para siempre viéndote levantarte cada mañana sin quejarte." aria-label="Conocer cualidad: Fortaleza">
+              <span class="planet" style="background:var(--gold);"></span>
+              <span class="planet-label">Fortaleza</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit-ring r2">
+        <div class="orbit-spin" style="animation-duration:20s;">
+          <div class="planet-pivot">
+            <button class="planet-counter" style="animation-duration:20s; color:var(--blue);" data-name="Sabiduría" data-msg="Tus consejos siguen siendo el mapa que uso cuando no sé qué camino tomar." aria-label="Conocer cualidad: Sabiduría">
+              <span class="planet" style="background:var(--blue);"></span>
+              <span class="planet-label">Sabiduría</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit-ring r3">
+        <div class="orbit-spin" style="animation-duration:26s;">
+          <div class="planet-pivot">
+            <button class="planet-counter" style="animation-duration:26s; color:var(--copper);" data-name="Constancia" data-msg="Tu esfuerzo silencioso sostiene, sin que casi lo notes, todo lo que hoy soy." aria-label="Conocer cualidad: Constancia">
+              <span class="planet" style="background:var(--copper);"></span>
+              <span class="planet-label">Constancia</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit-ring r4">
+        <div class="orbit-spin" style="animation-duration:34s;">
+          <div class="planet-pivot">
+            <button class="planet-counter" style="animation-duration:34s; color:var(--rose);" data-name="Alegría" data-msg="Tu manera de reírte de la vida me enseñó a no tomármela tan en serio." aria-label="Conocer cualidad: Alegría">
+              <span class="planet" style="background:var(--rose);"></span>
+              <span class="planet-label">Alegría</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit-ring r5">
+        <div class="orbit-spin" style="animation-duration:42s;">
+          <div class="planet-pivot">
+            <button class="planet-counter" style="animation-duration:42s; color:var(--purple);" data-name="Protección" data-msg="Mientras estés cerca, ninguna oscuridad logra asustarme del todo." aria-label="Conocer cualidad: Protección">
+              <span class="planet" style="background:var(--purple);"></span>
+              <span class="planet-label">Protección</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit-ring r6">
+        <div class="orbit-spin" style="animation-duration:50s;">
+          <div class="planet-pivot">
+            <button class="planet-counter" style="animation-duration:50s; color:var(--gold-bright);" data-name="Amor" data-msg="Me quieres sin condiciones, justo como solo un padre sabe hacerlo." aria-label="Conocer cualidad: Amor">
+              <span class="planet" style="background:var(--gold-bright);"></span>
+              <span class="planet-label">Amor</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-panel">
+      <p class="info-eyebrow" id="infoEyebrow" style="color:var(--gold);">✦ Toca un planeta</p>
+      <p class="info-text" id="infoText">Cada planeta de este sistema lleva el nombre de algo que aprendí de ti.</p>
+    </div>
+  </section>
+
+  <section class="name-divider">
+    <div class="divider-line"></div>
+    <p class="divider-label">✦ el nombre que más admiro ✦</p>
+    <h2 class="divider-name">MARIO DAQUILEMA</h2>
+    <div class="divider-line"></div>
+  </section>
+
+  <section class="pride-section">
+    <div class="section-head">
+      <p class="section-eyebrow">✦ Orgullo</p>
+      <h2 class="section-title">Por qué estoy orgulloso de ti</h2>
+      <p class="section-sub">Son tantas cosas que ni el universo entero alcanza para nombrarlas todas. Aquí van algunas.</p>
+    </div>
+    <div class="star-grid" id="starGrid">
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de poder decir, sin dudar, que tú eres mi papá.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de tu fuerza para salir adelante sin rendirte jamás.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de la forma en que trabajas sin quejarte nunca.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de cómo enfrentas cada problema con calma y cabeza fría.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de tu honestidad, incluso cuando decir la verdad cuesta.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de llevar tu apellido con tanto orgullo: Daquilema.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de cada sacrificio que hiciste por nosotros sin pedir nada.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de tu ejemplo, que enseña más que mil palabras.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de tu paciencia para explicarme las cosas una y otra vez.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de tu manera de querer sin pedir nada a cambio.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de tu humildad, incluso siendo el mejor en lo que haces.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de que mis amigos digan: "tu papá es increíble".</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de cada consejo tuyo que llegó justo a tiempo.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de tu disciplina y de tu manera de no rendirte.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso de todo lo que has construido con tus propias manos.</p></div>
+      <div class="star-card"><span class="glyph">✦</span><p>Orgulloso, hoy y siempre, de ser tu hijo.</p></div>
+    </div>
+  </section>
+
+  <section class="letter-section">
+    <div class="section-head">
+      <p class="section-eyebrow">✦ Una carta</p>
+      <h2 class="section-title">Para ti, papá</h2>
+    </div>
+
+    <article class="letter-card" id="letterCard">
+      <p>Papá, si tuviera que explicar el universo, no hablaría de planetas ni de estrellas: hablaría de ti. Eres la gravedad que mantiene todo en su lugar, la luz que llega incluso cuando el camino se pone oscuro, y la constante que nunca cambia sin importar cuántas cosas a tu alrededor sí lo hacen.</p>
+      <p>Gracias por cada sacrificio que nunca pediste que viera, por enseñarme a esforzarme y a no rendirme, y por seguir creyendo en mí incluso en los días en que yo dudaba.</p>
+      <p>No existe un universo tan grande como para contener todo lo que siento por ti. Feliz Día del Padre, Mario. Eres, sin duda, lo mejor que tengo.</p>
+      <div class="signature">
+        <span class="name">Con todo mi cariño, Estiben</span>
+        <span class="place">Quito, Ecuador · 21 de junio de 2026</span>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer>
+  <span class="mark">✦ ✦ ✦</span>
+  Hecho para Mario Daquilema — el universo entero cabe en un solo padre
+</footer>
+
+<script>
+  // ---------- Starfield ----------
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let stars = [];
+  let shootingStars = [];
+  let w, h;
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    const count = Math.floor((w * h) / 9000);
+    stars = Array.from({length: count}, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.3 + 0.3,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.4 + Math.random() * 0.8
+    }));
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function spawnShootingStar(){
+    if (reduceMotion) return;
+    shootingStars.push({
+      x: Math.random() * w * 0.6,
+      y: Math.random() * h * 0.3,
+      len: 80 + Math.random() * 60,
+      speed: 9 + Math.random() * 5,
+      angle: Math.PI / 4.2,
+      life: 1
+    });
+  }
+
+  let t = 0;
+  function draw(){
+    ctx.clearRect(0, 0, w, h);
+    t += 0.016;
+
+    stars.forEach(s => {
+      const tw = reduceMotion ? 1 : 0.5 + 0.5 * Math.sin(t * s.speed + s.phase);
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(244,241,251,${0.25 + tw * 0.65})`;
+      ctx.fill();
+    });
+
+    shootingStars.forEach(st => {
+      const dx = Math.cos(st.angle) * st.len;
+      const dy = Math.sin(st.angle) * st.len;
+      const grad = ctx.createLinearGradient(st.x, st.y, st.x - dx, st.y - dy);
+      grad.addColorStop(0, `rgba(244,197,99,${st.life})`);
+      grad.addColorStop(1, 'rgba(244,197,99,0)');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(st.x, st.y);
+      ctx.lineTo(st.x - dx, st.y - dy);
+      ctx.stroke();
+
+      st.x += Math.cos(st.angle) * st.speed;
+      st.y += Math.sin(st.angle) * st.speed;
+      st.life -= 0.012;
+    });
+    shootingStars = shootingStars.filter(st => st.life > 0 && st.x < w + 100 && st.y < h + 100);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+  if (!reduceMotion){
+    setInterval(spawnShootingStar, 4200);
+  }
+
+  // ---------- Planet info panel ----------
+  const infoText = document.getElementById('infoText');
+  const infoEyebrow = document.getElementById('infoEyebrow');
+  document.querySelectorAll('.planet-counter').forEach(btn => {
+    const update = () => {
+      infoEyebrow.textContent = '✦ ' + btn.dataset.name.toUpperCase();
+      infoEyebrow.style.color = btn.style.color;
+      infoText.textContent = btn.dataset.msg;
+    };
+    btn.addEventListener('mouseenter', update);
+    btn.addEventListener('focus', update);
+    btn.addEventListener('click', update);
+  });
+
+  // ---------- Letter reveal ----------
+  const letterCard = document.getElementById('letterCard');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        letterCard.classList.add('visible');
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.2 });
+  observer.observe(letterCard);
+
+  // ---------- Star cards reveal (staggered) ----------
+  const starCards = document.querySelectorAll('.star-card');
+  starCards.forEach((card, i) => {
+    card.style.transitionDelay = (i % 4) * 90 + 'ms';
+  });
+  const starObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('visible');
+        starObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  starCards.forEach(card => starObserver.observe(card));
+</script>
+
+</body>
+</html>
